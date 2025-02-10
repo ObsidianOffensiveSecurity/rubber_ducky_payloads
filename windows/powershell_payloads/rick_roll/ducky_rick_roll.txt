@@ -1,0 +1,24 @@
+REM rickroll
+
+DELAY 300
+REM Open the Run dialog
+WINDOWS r
+DELAY 1000
+STRING powershell "start-process 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'"
+ENTER  REM Execute the first PowerShell command
+
+DELAY 2000  REM Wait a bit (adjust as needed)
+
+REM Open Notepad
+WINDOWS r
+DELAY 700
+STRING notepad
+ENTER
+DELAY 1500  REM Give Notepad time to open
+
+REM Type the text you want to add
+STRING you got rick rolled
+ENTER
+DELAY 300
+STRING you got rick rolled
+ENTER

