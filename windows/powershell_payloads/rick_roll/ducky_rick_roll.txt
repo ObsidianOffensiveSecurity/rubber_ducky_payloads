@@ -1,4 +1,8 @@
 REM rickroll
+REM Title: rickroll
+REM Author: ObsidianOffSec
+REM Description: launches default web browser and opens rick roll on youtube
+REM Target: test
 
 DELAY 300
 REM Open the Run dialog
